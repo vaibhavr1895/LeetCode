@@ -14,5 +14,5 @@ public bool IsValid(string s) {
 			return false;
 		}
 	}
-	return true;
+	return stack.Count() == 0;
 }
