@@ -1,3 +1,53 @@
+// O(Log(m + n)) time complexity
+// O(1) space complexity
+public double FindMedianSortedArrays(int[] nums1, int[] nums2)
+{
+	if (nums1.Length > nums2.Length)
+	{
+		int[] temp = nums1;
+		nums1 = nums2;
+		nums2 = temp;
+	}
+
+	int m = nums1.Length;
+	int n = nums2.Length;
+	int l = 0;
+	int r = m;
+
+	while (l <= r)
+	{
+		int i = (l + r) / 2;
+		int j = (m + n + 1) / 2 - i;
+
+		int max1 = i > 0 ? nums1[i - 1] : int.MinValue;
+		int max2 = j > 0 ? nums2[j - 1] : int.MinValue;
+
+		int min1 = i < m ? nums1[i] : int.MaxValue;
+		int min2 = j < n ? nums2[j] : int.MaxValue;
+
+		if (max1 <= min2 && max2 <= min1)
+		{
+			if ((m + n) % 2 == 0)
+			{
+				return (Math.Max(max1, max2) + Math.Min(min1, min2)) / 2.0;
+			}
+			return Math.Min(min1, min2);
+		}
+		else if (max1 > min2)
+		{
+			r = i - 1;
+		}
+		else
+		{
+			l = i + 1;
+		}
+	}
+
+	throw new ArgumentException("Input arrays are not sorted.");
+}
+
+
+
 // O(m+n) time complexity
 // O(1) space complexity
 public double FindMedianSortedArrays(int[] nums1, int[] nums2) {
