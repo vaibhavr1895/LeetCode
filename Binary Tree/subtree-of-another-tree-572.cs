@@ -1,5 +1,24 @@
-// O(n) time complexity
+// Difficulty: Easy
+// O(n * m) time complexity
 // O(n) space complexity
+public bool IsSubtree(TreeNode root, TreeNode subRoot) {
+	if(subRoot == null){
+		return true;
+	}
+
+	if(root == null){
+		return false;
+	}
+
+	if(IsSameTree(root, subRoot)){
+		return true;
+	}
+
+	return IsSubtree(root.left, subRoot) || IsSubtree(root.right, subRoot);
+}
+
+// O(s * t) time complexity
+// O(s) space complexity
 public bool IsSubtree(TreeNode root, TreeNode subRoot) {
 	Queue<TreeNode> q = new Queue<TreeNode>();
 	
