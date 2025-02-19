@@ -1,18 +1,14 @@
 // O(logn) time complexity
 // O(1) space complexity
 public TreeNode LowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-	TreeNode node = root;
-
-	TreeNode lca = root;
-	while(node != null){
-			if(p.val > node.val && q.val > node.val){
-			node = node.right;
-		}else if(p.val < node.val && q.val < node.val){
-			node = node.left;
+	while(root != null){
+			if(p.val > root.val && q.val > root.val){
+			root = root.right;
+		}else if(p.val < root.val && q.val < root.val){
+			root = root.left;
 		}else{
-			lca = node;
-			break;
+			return root;
 		}
 	}
-	return lca;
+	return root;
 }
