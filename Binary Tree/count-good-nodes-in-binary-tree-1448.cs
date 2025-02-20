@@ -1,26 +1,24 @@
 // O(n) time complexity
 // O(n) space complexity
-
-int goodNodes = 0;
 public int GoodNodes(TreeNode root) {
-	goodNodes++;
 	int curGreatest = root.val;
-	Traverse(root.left, curGreatest);
-	Traverse(root.right, curGreatest);
+	int leftGoodNodes = Traverse(root.left, curGreatest);
+	int rightGoodNodes = Traverse(root.right, curGreatest);
 
-	return goodNodes;
+	return leftGoodNodes + rightGoodNodes + 1;
 }
 
-private void Traverse(TreeNode node, int curGreatest){
+private int Traverse(TreeNode node, int curGreatest){
 	if(node == null){
-		return;
+		return 0;
 	}
-
+	int res = 0;
 	if(node.val >= curGreatest){
 		curGreatest = node.val;
-		goodNodes++;
+		res++;
 	}
 
-	Traverse(node.left, curGreatest);
-	Traverse(node.right, curGreatest);
+	res += Traverse(node.left, curGreatest);
+	res += Traverse(node.right, curGreatest);
+	return res;
 }
