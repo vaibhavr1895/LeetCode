@@ -30,3 +30,24 @@ private int QuickSelect(int left, int right, int[] nums, int k){
         return nums[p];
     }
 }
+
+
+// PriorityQueue
+public int FindKthLargest(int[] nums, int k) {
+    PriorityQueue<int, int> queue = new PriorityQueue<int, int>(new PriorityComparator());
+    foreach(var n in nums){
+        queue.Enqueue(n, n);
+    }
+
+    while(queue.Count > k){
+        queue.Dequeue();
+    }
+
+    return queue.Peek();
+}
+
+public class PriorityComparator : IComparer<int>{
+    public int Compare(int x, int y){
+        return x - y;
+    }
+}
