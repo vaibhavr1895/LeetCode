@@ -33,3 +33,27 @@ private int[][] QuickSelect(int[][] points, int k, int left, int right){
     }
     return points;
 }
+
+// Priority Queue
+public int[][] KClosest(int[][] points, int k) {
+    PriorityQueue<int[], int> myPriorityQueue = new PriorityQueue<int[], int>(new PriorityComparator());
+
+    for(int i =0; i < points.Length; i++){
+        var sqr = (points[i][0] * points[i][0]) + (points[i][1] * points[i][1]);
+        myPriorityQueue.Enqueue(points[i], sqr);
+    }
+    int[][] retVal = new int[k][];
+    int j =0;
+    while(myPriorityQueue.Count > points.Length - k){
+        var d = myPriorityQueue.Dequeue();
+        retVal[j] = d;
+        j++;
+    }
+    return retVal;
+}
+
+public class PriorityComparator: IComparer<int>{
+    public int Compare(int x, int y){
+        return x - y;
+    }
+}
