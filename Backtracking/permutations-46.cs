@@ -1,3 +1,6 @@
+// n * n time complexity
+// n! space complexity
+
 public IList<IList<int>> Permute(int[] nums) {
     List<IList<int>> retVal = new List<IList<int>>();
     retVal.Add(new List<int>());
