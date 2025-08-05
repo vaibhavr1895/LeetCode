@@ -3,7 +3,7 @@ public IList<IList<int>> ThreeSum(int[] nums) {
     
     List<IList<int>> retVal = new List<IList<int>>();
 
-        for(int i = 0; i< nums.Length; i++){
+    for(int i = 0; i< nums.Length; i++){
         int left = i + 1;
         int right = nums.Length - 1;
         if(i > 0 && nums[i] == nums[i - 1]){
